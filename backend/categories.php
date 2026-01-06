@@ -68,7 +68,7 @@ function handleGet($conn) {
     } else {
         // Super admin sees all categories
         if ($role === 'super') {
-            $stmt = $conn->query("SELECT * FROM categories ORDER BY name ASC");
+            $stmt = $conn->query("SELECT * FROM categories ORDER BY id ASC, name ASC");
             $categories = $stmt->fetchAll();
         } else {
             // Admin sees only assigned categories

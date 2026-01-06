@@ -635,17 +635,114 @@ function setupAllEventHandlers() {
     });
 }
 
-// Custom app setup - add your own stuff here
-function customAppSetup() {
-    // This is where I add my personal touches
+// Categories with auto-select
+async function getCategories() {
+    let list = document.getElementById('categoryList');
+    if (!list) return;
     
+    list.innerHTML = '<li class="loading">Loading...</li>';
+    
+    try {
+        let res = await fetch(`${API_ENDPOINT}/category.php`);
+        let {success, categories} = await res.json();
+        
+        if (success && categories.length) {
+            // Sort and store
+            allCategoriesList = categories.sort((a,b) => a.id - b.id);
+            list.innerHTML = '';
+            
+            // Get first category
+            let firstCat = allCategoriesList[0];
+            
+            // Create all category items
+            allCategoriesList.forEach(cat => {
+                let item = document.createElement('li');
+                item.className = 'category-item';
+                item.textContent = cat.name;
+                
+                // Auto-select first one
+                if (cat.id === firstCat.id) {
+                    item.classList.add('active');
+                    chooseCategory(firstCat.id); // Load its products
+                }
+                
+                item.onclick = function() {
+                    // Update active states
+                    document.querySelectorAll('.category-item').forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Load products
+                    chooseCategory(cat.id);
+                };
+                
+                list.appendChild(item);
+            });
+            
+        } else {
+            list.innerHTML = '<li class="empty-state">No categories</li>';
+        }
+    } catch(e) {
+        list.innerHTML = '<li class="empty-state">Error loading</li>';
+    }
+}
+
+// Load products for category
+async function fetchCategoryProducts(catId) {
+    let grid = document.getElementById('productGrid');
+    if (!grid) return;
+    
+    grid.innerHTML = '<div class="loading">Loading products...</div>';
+    
+    try {
+        let res = await fetch(`${API_ENDPOINT}/product.php?category_id=${catId}`);
+        let {success, products, show_price} = await res.json();
+        
+        if (success) {
+            grid.innerHTML = '';
+            
+            if (!products.length) {
+                grid.innerHTML = '<div class="empty-state">No products</div>';
+                return;
+            }
+            
+            // Sort by ID
+            products.sort((a,b) => a.id - b.id);
+            
+            // Display products
+            products.forEach(p => {
+                let card = document.createElement('div');
+                card.className = 'product-card';
+                
+                card.innerHTML = `
+                    <img src="${p.image ? '../'+p.image : '#'}" class="product-image">
+                    <div class="product-info">
+                        <div class="product-name">${p.name}</div>
+                        <div class="product-sku">${p.sku}</div>
+                        ${show_price && p.price ? `<div class="product-price">$${p.price}</div>` : ''}
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+            
+        } else {
+            grid.innerHTML = '<div class="empty-state">Failed to load</div>';
+        }
+    } catch(e) {
+        grid.innerHTML = '<div class="empty-state">Network error</div>';
+    }
+}
+
+// Simple choose function
+function chooseCategory(catId) {
+    fetchCategoryProducts(catId);
+}
+// Custom app setup - add your own stuff here
+function customAppSetup() {    
     // Log startup time
     if (DEBUG_MODE) {
         console.log('🛠️ Custom setup complete');
     }
-    
-    // You can add more custom initialization here
-    // Example: Set default values, check localStorage, etc.
 }
 
 // ============================================

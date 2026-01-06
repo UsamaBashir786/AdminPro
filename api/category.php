@@ -32,7 +32,7 @@ try {
             FROM categories c
             INNER JOIN user_permissions up ON c.id = up.category_id
             WHERE up.user_id = :user_id
-            ORDER BY c.name ASC
+            ORDER BY c.id ASC, c.name ASC
         ");
         $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
         $stmt->execute();
