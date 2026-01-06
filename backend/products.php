@@ -153,6 +153,15 @@ function handlePost($conn) {
         throw new Exception('Invalid input data');
     }
     
+    // ✨ NEW: Check if SKU already exists
+    $checkSkuStmt = $conn->prepare("SELECT id FROM products WHERE sku = :sku");
+    $checkSkuStmt->bindParam(':sku', $sku);
+    $checkSkuStmt->execute();
+    
+    if ($checkSkuStmt->fetch()) {
+        throw new Exception('SKU already exists. Please use a different SKU.');
+    }
+    
     // Handle image upload
     if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
         $uploadDir = '../uploads/';
@@ -193,7 +202,6 @@ function handlePost($conn) {
         throw new Exception('Failed to create product');
     }
 }
-
 function handlePut($conn) {
     // Handle multipart form data for file upload
     if (!isset($_POST['id'])) {
