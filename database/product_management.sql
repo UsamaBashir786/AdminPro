@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 06, 2026 at 04:12 PM
+-- Generation Time: Jan 06, 2026 at 04:44 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,7 +40,9 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(6, 'test', 'test', '2026-01-06 14:25:43', '2026-01-06 14:25:43');
+(7, 'Category one', 'test', '2026-01-06 15:26:53', '2026-01-06 15:26:53'),
+(8, 'Category Two', 'test', '2026-01-06 15:27:11', '2026-01-06 15:27:11'),
+(9, 'Category Three', '', '2026-01-06 15:27:21', '2026-01-06 15:27:21');
 
 -- --------------------------------------------------------
 
@@ -65,7 +67,16 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `category_id`, `image`, `sku`, `description`, `price`, `created_at`, `updated_at`) VALUES
-(4, 'test', 6, 'uploads/product_695d1b81540f1.png', '10', 'test', 120.00, '2026-01-06 14:26:09', '2026-01-06 14:26:09');
+(5, 'Product One', 7, 'uploads/product_695d2b3cdd5a7.png', '4', 'test', 15.00, '2026-01-06 15:33:16', '2026-01-06 15:33:16'),
+(6, 'Product Two', 7, 'uploads/product_695d2b5b7ef0a.png', '5', 'test', 18.00, '2026-01-06 15:33:47', '2026-01-06 15:33:47'),
+(7, 'Product Three', 7, 'uploads/product_695d2b7b51da1.png', '8', 'This product is good and decent.', 20.00, '2026-01-06 15:34:19', '2026-01-06 15:34:19'),
+(8, 'Product Four', 7, 'uploads/product_695d2b98744a3.png', '9', 'This product is good and decent and nice.', 16.00, '2026-01-06 15:34:48', '2026-01-06 15:34:48'),
+(9, 'Product One', 8, 'uploads/product_695d2bb60c09c.png', '13', 'This product is good and decent.', 60.00, '2026-01-06 15:35:18', '2026-01-06 15:35:18'),
+(11, 'Product Two', 8, 'uploads/product_695d2bde06eb2.png', '14', 'This product is good and decent.', 66.00, '2026-01-06 15:35:58', '2026-01-06 15:35:58'),
+(12, 'Product Three', 8, 'uploads/product_695d2bfb7cd4d.png', '12', 'This product is good and decent.', 44.00, '2026-01-06 15:36:27', '2026-01-06 15:36:27'),
+(13, 'Product One', 9, 'uploads/product_695d2c12e60bd.png', '16', 'This product is good and decent.', 20.00, '2026-01-06 15:36:50', '2026-01-06 15:36:50'),
+(15, 'Product Two', 9, 'uploads/product_695d2c2c9e9a7.png', '17', 'This product is good and decent.', 10.00, '2026-01-06 15:37:16', '2026-01-06 15:37:16'),
+(17, 'Product Three', 9, 'uploads/product_695d2c427ceec.png', '7', 'This product is good and decent.', 10.00, '2026-01-06 15:37:38', '2026-01-06 15:37:38');
 
 -- --------------------------------------------------------
 
@@ -105,14 +116,6 @@ CREATE TABLE `user_permissions` (
   `permission_type` enum('category','product') NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `user_permissions`
---
-
-INSERT INTO `user_permissions` (`id`, `user_id`, `category_id`, `product_id`, `permission_type`, `created_at`) VALUES
-(5, 2, 6, NULL, 'category', '2026-01-06 14:27:14'),
-(6, 2, 6, 4, 'product', '2026-01-06 14:27:14');
 
 --
 -- Indexes for dumped tables
@@ -157,13 +160,13 @@ ALTER TABLE `user_permissions`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `users`
