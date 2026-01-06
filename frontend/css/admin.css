@@ -438,6 +438,12 @@ small {
   color: hsl(var(--muted-foreground));
 }
 
+@media screen and (max-width:417px){
+  .d-sm-none{
+    display: none;
+  }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .container {
