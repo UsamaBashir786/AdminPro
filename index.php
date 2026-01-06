@@ -1,3 +1,15 @@
+<!-- 
+Development Assistants
+
+These files help with auto-redirect during testing:
+- api/redirect.php → URL calculator
+- index.php → Root redirector
+
+Remove when deploying
+Set up proper server configuration instead.
+
+Thanks for making development easier, little files! ✨
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
