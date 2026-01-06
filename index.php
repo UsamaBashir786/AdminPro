@@ -49,7 +49,7 @@ Thanks for making development easier, little files! ✨
                 
                 document.body.innerHTML += `
                     <div style="margin-top: 20px; text-align: center;">
-                        <a href="frontend/index.html" style="color: #3498db; text-decoration: none;">
+                        <a href="frontend/index.php" style="color: #3498db; text-decoration: none;">
                             ↗️ Open directly
                         </a>
                     </div>

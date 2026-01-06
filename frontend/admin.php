@@ -14,7 +14,7 @@
             <span class="d-sm-none">Admin Panel - User Management</span>
         </h1>
         <div>
-            <a href="index.html" class="btn btn-secondary">
+            <a href="index.php" class="btn btn-secondary">
                 <i data-lucide="arrow-left" width="16" height="16"></i>
                 Back to Home
             </a>
@@ -155,10 +155,10 @@
                 
                 if (!data.logged_in || data.user.role !== 'super') {
                     alert('Access denied. Super admin only.');
-                    window.location.href = 'index.html';
+                    window.location.href = 'index.php';
                 }
             } catch (error) {
-                window.location.href = 'login.html';
+                window.location.href = 'login.php';
             }
         }
 

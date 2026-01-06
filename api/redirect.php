@@ -19,7 +19,7 @@ $path_parts = explode('/', trim($current_path, '/'));
 array_pop($path_parts);
 $base_path = '/' . implode('/', $path_parts);
 $base_path = rtrim($base_path, '/');
-$frontend_url = $protocol . '://' . $host . $base_path . '/frontend/index.html';
+$frontend_url = $protocol . '://' . $host . $base_path . '/frontend/index.php';
 
 // For debugging purpose
 $response = [
@@ -31,7 +31,7 @@ $response = [
         'host' => $host,
         'request_uri' => $request_uri
     ],
-    'message' => 'Redirect to frontend/index.html from one step back'
+    'message' => 'Redirect to frontend/index.php from one step back'
 ];
 
 echo json_encode($response, JSON_PRETTY_PRINT);

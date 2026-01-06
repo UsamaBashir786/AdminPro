@@ -71,11 +71,11 @@
         </form>
         
         <div class="links">
-            <p>Already have an account? <a href="login.html">
+            <p>Already have an account? <a href="login.php">
                 <i data-lucide="log-in" width="14" height="14"></i>
                 Login
             </a></p>
-            <p><a href="index.html">
+            <p><a href="index.php">
                 <i data-lucide="arrow-left" width="14" height="14"></i>
                 Back to Home
             </a></p>
@@ -122,7 +122,7 @@
                     showMessage('Account created! Redirecting to login...', 'success');
                     document.getElementById('signupForm').reset();
                     setTimeout(() => {
-                        window.location.href = 'login.html';
+                        window.location.href = 'login.php';
                     }, 2000);
                 } else {
                     showMessage(data.message || 'Signup failed', 'error');

@@ -82,11 +82,11 @@
         </div>
         
         <div class="links">
-            <p>Don't have an account? <a href="signup.html">
+            <p>Don't have an account? <a href="signup.php">
                 <i data-lucide="user-plus" width="14" height="14"></i>
                 Sign up
             </a></p>
-            <p><a href="index.html">
+            <p><a href="index.php">
                 <i data-lucide="arrow-left" width="14" height="14"></i>
                 Back to Home
             </a></p>
@@ -146,7 +146,7 @@
                 if (data.success) {
                     showMessage('Login successful! Redirecting...', 'success');
                     setTimeout(() => {
-                        window.location.href = 'index.html';
+                        window.location.href = 'index.php';
                     }, 1000);
                 } else {
                     showMessage(data.message || 'Invalid username or password', 'error');
@@ -186,7 +186,7 @@
                 const response = await fetch('../api/user.php?action=session');
                 const data = await response.json();
                 if (data.logged_in) {
-                    window.location.href = 'index.html';
+                    window.location.href = 'index.php';
                 }
             } catch (error) {
                 // Not logged in, stay on login page

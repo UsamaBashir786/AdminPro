@@ -42,7 +42,7 @@
         <div class="main-content">
             <div id="adminPanel" class="admin-panel">
                 <div class="admin-buttons">
-                    <button class="btn btn-primary" onclick="window.location.href='admin.html'">
+                    <button class="btn btn-primary" onclick="window.location.href='admin.php'">
                         <i data-lucide="users" width="16" height="16"></i>
                         Manage Users
                     </button>
