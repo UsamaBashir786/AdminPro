@@ -1,4 +1,6 @@
 <?php
+// This little helper figures out where our main app lives
+// and tells the frontend where to go. Pretty smart, huh?
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');

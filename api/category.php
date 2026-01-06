@@ -1,9 +1,6 @@
 <?php
-/**
- * Category API
- * Public endpoint for category data
- */
-
+//Category API
+//Public endpoint for category data
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET');
