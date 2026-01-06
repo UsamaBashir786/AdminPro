@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Product Management</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --card: 0 0% 100%;
+            --card-foreground: 222.2 84% 4.9%;
+            --primary: 222.2 47.4% 11.2%;
+            --primary-foreground: 210 40% 98%;
+            --secondary: 210 40% 96.1%;
+            --secondary-foreground: 222.2 47.4% 11.2%;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --accent: 210 40% 96.1%;
+            --border: 214.3 31.8% 91.4%;
+            --destructive: 0 84.2% 60.2%;
+            --destructive-foreground: 210 40% 98%;
+            --success: 142.1 76.2% 36.3%;
+            --success-foreground: 355.7 100% 97.3%;
+            --radius: 0.5rem;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: linear-gradient(135deg, hsl(var(--muted)) 0%, hsl(var(--background)) 100%);
+            color: hsl(var(--foreground));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .signup-container {
+            background: hsl(var(--card));
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            width: 100%;
+            max-width: 420px;
+            border: 1px solid hsl(var(--border));
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .logo-icon {
+            width: 64px;
+            height: 64px;
+            background: hsl(var(--success));
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+            text-align: center;
+            color: hsl(var(--foreground));
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: hsl(var(--muted-foreground));
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        
+        label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: hsl(var(--foreground));
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .input-icon {
+            position: absolute;
+            left: 0.75rem;
+            color: hsl(var(--muted-foreground));
+            pointer-events: none;
+        }
+        
+        input {
+            width: 100%;
+            padding: 0.625rem 0.75rem 0.625rem 2.5rem;
+            border: 1px solid hsl(var(--border));
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            transition: all 0.2s;
+            background: hsl(var(--background));
+            color: hsl(var(--foreground));
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: hsl(var(--success));
+            box-shadow: 0 0 0 3px hsl(var(--success) / 0.1);
+        }
+        
+        input::placeholder {
+            color: hsl(var(--muted-foreground) / 0.5);
+        }
+        
+        button {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: hsl(var(--success));
+            color: hsl(var(--success-foreground));
+            border: none;
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            height: 2.75rem;
+        }
+        
+        button:hover {
+            background: hsl(var(--success) / 0.9);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        button:disabled {
+            background: hsl(var(--muted));
+            color: hsl(var(--muted-foreground));
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .message {
+            padding: 0.75rem 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-10px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .message.error {
+            background: hsl(var(--destructive) / 0.1);
+            color: hsl(var(--destructive));
+            border-color: hsl(var(--destructive) / 0.3);
+        }
+        
+        .message.success {
+            background: hsl(var(--success) / 0.1);
+            color: hsl(var(--success));
+            border-color: hsl(var(--success) / 0.3);
+        }
+        
+        .links {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid hsl(var(--border));
+            font-size: 0.875rem;
+        }
+        
+        .links p {
+            margin-bottom: 0.5rem;
+            color: hsl(var(--muted-foreground));
+        }
+        
+        .links a {
+            color: hsl(var(--primary));
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        .links a:hover {
+            color: hsl(var(--primary) / 0.8);
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 480px) {
+            .signup-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 1.25rem;
+            }
+            
+            .logo-icon {
+                width: 56px;
+                height: 56px;
+            }
+            
+            .form-group {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <div class="logo">
+            <div class="logo-icon">
+                <i data-lucide="user-plus" width="32" height="32" style="color: hsl(var(--success-foreground));"></i>
+            </div>
+            <h1>Create Account</h1>
+            <p class="subtitle">Sign up to get started with Product Management</p>
+        </div>
+        
+        <div id="message" class="message"></div>
+        
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="name">
+                    <i data-lucide="user" width="14" height="14"></i>
+                    Full Name
+                </label>
+                <div class="input-wrapper">
+                    <i data-lucide="user" width="16" height="16" class="input-icon"></i>
+                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="username">
+                    <i data-lucide="at-sign" width="14" height="14"></i>
+                    Username
+                </label>
+                <div class="input-wrapper">
+                    <i data-lucide="at-sign" width="16" height="16" class="input-icon"></i>
+                    <input type="text" id="username" name="username" required autocomplete="username" placeholder="Choose a username">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">
+                    <i data-lucide="mail" width="14" height="14"></i>
+                    Email
+                </label>
+                <div class="input-wrapper">
+                    <i data-lucide="mail" width="16" height="16" class="input-icon"></i>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">
+                    <i data-lucide="lock" width="14" height="14"></i>
+                    Password
+                </label>
+                <div class="input-wrapper">
+                    <i data-lucide="lock" width="16" height="16" class="input-icon"></i>
+                    <input type="password" id="password" name="password" required autocomplete="new-password" placeholder="Create a password">
+                </div>
+            </div>
+            
+            <button type="submit" id="signupBtn">
+                <i data-lucide="user-plus" width="16" height="16"></i>
+                <span>Create Account</span>
+            </button>
+        </form>
+        
+        <div class="links">
+            <p>Already have an account? <a href="login.html">
+                <i data-lucide="log-in" width="14" height="14"></i>
+                Login
+            </a></p>
+            <p><a href="index.html">
+                <i data-lucide="arrow-left" width="14" height="14"></i>
+                Back to Home
+            </a></p>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = '../api';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+        
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value.trim();
+            const username = document.getElementById('username').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const signupBtn = document.getElementById('signupBtn');
+            
+            if (!name || !username || !email || !password) {
+                showMessage('Please fill in all fields', 'error');
+                return;
+            }
+            
+            signupBtn.disabled = true;
+            signupBtn.innerHTML = '<i data-lucide="loader-2" width="16" height="16" style="animation: spin 1s linear infinite;"></i><span>Creating account...</span>';
+            lucide.createIcons();
+            
+            try {
+                const response = await fetch(`${API_BASE}/user.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, username, email, password })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showMessage('Account created! Redirecting to login...', 'success');
+                    document.getElementById('signupForm').reset();
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 2000);
+                } else {
+                    showMessage(data.message || 'Signup failed', 'error');
+                    signupBtn.disabled = false;
+                    signupBtn.innerHTML = '<i data-lucide="user-plus" width="16" height="16"></i><span>Create Account</span>';
+                    lucide.createIcons();
+                }
+            } catch (error) {
+                showMessage('Network error. Please try again.', 'error');
+                signupBtn.disabled = false;
+                signupBtn.innerHTML = '<i data-lucide="user-plus" width="16" height="16"></i><span>Create Account</span>';
+                lucide.createIcons();
+            }
+        });
+        
+        function showMessage(text, type) {
+            const messageEl = document.getElementById('message');
+            const icon = type === 'error' ? 'alert-circle' : 'check-circle';
+            messageEl.innerHTML = `<i data-lucide="${icon}" width="16" height="16"></i><span>${text}</span>`;
+            messageEl.className = `message ${type}`;
+            messageEl.style.display = 'flex';
+            lucide.createIcons();
+        }
+    </script>
+    
+    <style>
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</body>
+</html>
